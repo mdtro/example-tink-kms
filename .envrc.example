@@ -18,3 +18,8 @@ else
     source .venv/bin/activate
     unset PS1
 fi
+
+export GCP_PROJECT_ID="<GCP PROJECT ID>"
+export KMS_LOCATION_ID="global"
+export KMS_KEY_RING_ID="<KMS KEYRING NAME>"
+export KMS_CRYPTO_KEY_ID="<KMS KEY ID>"
