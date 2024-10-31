@@ -5,7 +5,7 @@ from .encryption import kms_aead
 
 
 class UserGitHubToken(models.Model):
-    user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     encrypted_token = models.BinaryField()
     last_encryption_date = models.DateTimeField(
         default=timezone.now

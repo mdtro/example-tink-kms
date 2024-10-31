@@ -1,0 +1,11 @@
+{% extends "pats/base.html" %}
+
+{% block title %}View GitHub Tokens{% endblock %}
+
+{% block content %}
+
+<h1>Success</h1>
+<p>Your GitHub Personal Access Token has been successfully saved.</p>
+<a href="{% url 'save_token' %}">Go back to save another token</a>
+<a href="{% url 'view_tokens' %}">View your tokens</a>
+{% endblock %}

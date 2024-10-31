@@ -1,0 +1,32 @@
+{% extends "pats/base.html" %}
+
+{% block title %}View GitHub Tokens{% endblock %}
+
+{% block content %}
+<h1>Your GitHub Personal Access Tokens</h1>
+
+{% if tokens_data %}
+<table>
+  <thead>
+    <tr>
+      <th>Token ID</th>
+      <th>Encrypted Token (Base64)</th>
+      <th>Decrypted Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for token in tokens_data %}
+    <tr>
+      <td>{{ token.id }}</td>
+      <td class="encrypted_column">{{ token.encrypted_token_base64 }}</td>
+      <td>{{ token.decrypted_token }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No GitHub tokens found for your account.</p>
+{% endif %}
+
+<a href="{% url 'save_token' %}">Save a new token</a>
+{% endblock %}

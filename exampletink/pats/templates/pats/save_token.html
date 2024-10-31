@@ -1,0 +1,17 @@
+{% extends "pats/base.html" %}
+
+{% block title %}Save GitHub Token{% endblock %}
+
+{% block content %}
+<h1>Save Your GitHub Token</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save Token</button>
+</form>
+
+<a href="{% url 'save_token' %}">Save another token</a>
+<br />
+<a href="{% url 'view_tokens' %}">View saved tokens</a>
+{% endblock %}
