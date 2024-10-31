@@ -13,7 +13,21 @@ def initialize_kms():
         kms_key_uri, None
     )  # specifying None here forces application default creds
 
-    return kms_aead.get_aead(kms_key_uri)
+    kms_aead = kms_aead.get_aead(kms_key_uri)
+
+    return aead.KmsEnvelopeAead(aead.aead_key_templates.AES256_GCM, kms_aead)
 
 
-kms_aead = initialize_kms()
+envelope_aead = initialize_kms()
+
+
+def encrypt_token(token: str):
+    # the value returned here is the ciphertext and encrypted DEK
+    encrypted_token = envelope_aead.encrypt(token.encode("utf-8"), b"")
+    return encrypted_token
+
+
+def decrypt_token(encrypted_token):
+    # Decrypt the token
+    decrypted_token = envelope_aead.decrypt(encrypted_token, b"")
+    return decrypted_token.decode("utf-8")

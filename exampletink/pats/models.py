@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from .encryption import kms_aead
+from .encryption import encrypt_token, decrypt_token
 
 
 class UserGitHubToken(models.Model):
@@ -12,9 +12,8 @@ class UserGitHubToken(models.Model):
     )  # Track encryption date
 
     def set_token(self, token: str):
-        self.encrypted_token = kms_aead.encrypt(token.encode("utf-8"), b"")
+        self.encrypted_token = encrypt_token(token)
         self.last_encryption_date = timezone.now()
 
     def get_token(self) -> str:
-        decrypted_token = kms_aead.decrypt(self.encrypted_token, b"")
-        return decrypted_token.decode("utf-8")
+        return decrypt_token(self.encrypted_token)

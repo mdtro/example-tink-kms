@@ -7,7 +7,8 @@ take mock tokens and store it in an encrypted column of the database.
 It currently uses symmetric encryption for each stored token.
 
 # TODO
-- Implement envelope encryption
+- ~~Implement envelope encryption~~
+- Fix custom Django management command to re-encrypt tokens
 
 # Getting Started
 
