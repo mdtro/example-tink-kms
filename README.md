@@ -22,7 +22,7 @@ You'll need the [gcloud](https://cloud.google.com/sdk/docs/install#mac) CLI inst
 5. Create the keyring: `gcloud kms keyrings create test-keyring --location global`
 6. Create a key (this is using MacOS's version of `date`):
 
-  ```
+  ```sh
   gcloud kms keys create pat-encryption-key \
     --location global \
     --keyring test-keyring \
